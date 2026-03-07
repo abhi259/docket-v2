@@ -77,7 +77,7 @@ export default function Cart() {
           {groupedItems.length > 0 && (
             <button
               onClick={clearCart}
-              className="text-xs font-medium text-red-500 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors"
+              className="text-xs font-medium text-red-500 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
             >
               Clear All
             </button>
@@ -139,7 +139,7 @@ export default function Cart() {
                         </div>
                         <button
                           onClick={() => removeAllOfItem(item.id)}
-                          className="p-1 hover:bg-gray-200 rounded-md transition-colors"
+                          className="p-1 hover:bg-gray-200 rounded-md transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-3.5 h-3.5 text-gray-400" />
                         </button>
@@ -154,7 +154,7 @@ export default function Cart() {
                         <div className="flex items-center gap-1">
                           <button
                             onClick={() => decrementItem(item.id)}
-                            className="w-7 h-7 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+                            className="w-7 h-7 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
                           >
                             <Minus className="w-3.5 h-3.5 text-gray-600" />
                           </button>
@@ -163,7 +163,7 @@ export default function Cart() {
                           </span>
                           <button
                             onClick={() => handleIncrement(item)}
-                            className="w-7 h-7 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:from-orange-600 hover:to-red-600 transition-colors"
+                            className="w-7 h-7 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:from-orange-600 hover:to-red-600 transition-colors cursor-pointer"
                           >
                             <Plus className="w-3.5 h-3.5 text-white" />
                           </button>
@@ -210,7 +210,7 @@ export default function Cart() {
           </div>
 
           {/* Checkout Button */}
-          <button className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-[0.98]">
+          <button className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-[0.98] cursor-pointer">
             Proceed to Checkout
           </button>
         </div>

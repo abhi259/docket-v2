@@ -48,7 +48,7 @@ export default function FoodCard({ foodData }: FoodCardProps) {
 
   return (
     <div
-      className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+      className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -98,7 +98,7 @@ export default function FoodCard({ foodData }: FoodCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-1">
         {/* Title & Spice Level */}
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="font-semibold text-gray-900 text-lg leading-tight line-clamp-1">
@@ -118,24 +118,24 @@ export default function FoodCard({ foodData }: FoodCardProps) {
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        <div className="flex flex-wrap gap-1.5 flex-1">
           {foodData.ingredients.slice(0, 3).map((ingredient) => (
             <span
               key={ingredient}
-              className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full"
+              className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full h-fit"
             >
               {ingredient}
             </span>
           ))}
           {foodData.ingredients.length > 3 && (
-            <span className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full">
+            <span className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full h-fit">
               +{foodData.ingredients.length - 3}
             </span>
           )}
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+        <div className="flex items-center justify-between pt-3 border-t border-gray-100 mt-4">
           {/* Nutrition Quick View */}
           <div className="flex items-center gap-3 text-xs text-gray-500">
             <span className="flex items-center gap-1">
@@ -148,7 +148,7 @@ export default function FoodCard({ foodData }: FoodCardProps) {
           {quantity === 0 ? (
             <button
               onClick={() => addToCart(foodData)}
-              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-sm font-medium rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-95"
+              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-sm font-medium rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-95 cursor-pointer"
             >
               <Plus size={16} />
               Add
@@ -157,7 +157,7 @@ export default function FoodCard({ foodData }: FoodCardProps) {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => decrementItem(foodData.id)}
-                className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-full hover:bg-gray-100 transition-colors active:scale-95"
+                className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-full hover:bg-gray-100 transition-colors active:scale-95 cursor-pointer"
               >
                 <Minus size={14} className="text-gray-600" />
               </button>
@@ -166,7 +166,7 @@ export default function FoodCard({ foodData }: FoodCardProps) {
               </span>
               <button
                 onClick={() => addToCart(foodData)}
-                className="w-8 h-8 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 rounded-full hover:from-orange-600 hover:to-red-600 transition-colors active:scale-95"
+                className="w-8 h-8 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 rounded-full hover:from-orange-600 hover:to-red-600 transition-colors active:scale-95 cursor-pointer"
               >
                 <Plus size={14} className="text-white" />
               </button>
