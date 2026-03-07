@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Plus, Minus, Flame, Leaf } from "lucide-react";
+import { Plus, Minus, Flame, Leaf, Dumbbell } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useCartStore } from "@/app/store/store";
 
@@ -141,6 +141,11 @@ export default function FoodCard({ foodData }: FoodCardProps) {
             <span className="flex items-center gap-1">
               <Leaf size={14} className="text-green-500" />
               {foodData.nutrition.calories} cal
+            </span>
+            <span className="text-gray-300">|</span>
+            <span className="flex items-center gap-1">
+              <Dumbbell size={14} className="text-blue-500" />
+              {foodData.nutrition.protein} protein
             </span>
           </div>
 
