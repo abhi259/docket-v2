@@ -15,7 +15,7 @@ interface CartItemGroup {
 }
 
 export default function Cart() {
-  const { cart, addToCart, decrementItem, removeAllOfItem } = useCartStore();
+  const { cart, addToCart, decrementItem, removeAllOfItem, clearCart } = useCartStore();
 
   const groupedItems = useMemo(() => {
     const itemMap = new Map<number, CartItemGroup>();
@@ -62,16 +62,26 @@ export default function Cart() {
     <div className="min-w-[360px] h-full bg-gray-100 flex flex-col border-l border-gray-200">
       {/* Header */}
       <div className="p-5 border-b border-gray-100">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md shadow-orange-200">
-            <ShoppingBag className="w-5 h-5 text-white" />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md shadow-orange-200">
+              <ShoppingBag className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">Your Cart</h2>
+              <p className="text-xs text-gray-500">
+                {totalItems} {totalItems === 1 ? "item" : "items"}
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-lg font-bold text-gray-900">Your Cart</h2>
-            <p className="text-xs text-gray-500">
-              {totalItems} {totalItems === 1 ? "item" : "items"}
-            </p>
-          </div>
+          {groupedItems.length > 0 && (
+            <button
+              onClick={clearCart}
+              className="text-xs font-medium text-red-500 hover:text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors"
+            >
+              Clear All
+            </button>
+          )}
         </div>
       </div>
 
