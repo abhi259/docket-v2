@@ -91,3 +91,17 @@ export const useCheckoutPopupStore = create<CheckoutPopupState>((set) => ({
   isCheckoutOpen: false,
   setIsCheckoutOpen: (isCheckoutOpen: boolean) => set({ isCheckoutOpen }),
 }));
+
+import type { UIMessage } from "ai";
+
+interface ChatState {
+  messages: UIMessage[];
+  setMessages: (messages: UIMessage[]) => void;
+  clearMessages: () => void;
+}
+
+export const useChatStore = create<ChatState>((set) => ({
+  messages: [],
+  setMessages: (messages) => set({ messages }),
+  clearMessages: () => set({ messages: [] }),
+}));

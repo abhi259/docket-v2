@@ -10,33 +10,27 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { ChatInput } from "./ChatInput";
 import { ChatHeader } from "./ChatHeader";
 import { ChatMessages } from "./ChatMessages";
+import { useChatStore } from "../store/store";
 
 export default function Page() {
   const [input, setInput] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
   const hasProcessedUrlMessage = useRef(false);
-  
+  const { messages: storedMessages, setMessages } = useChatStore();
+
   const { messages, sendMessage, status, error, addToolOutput } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
-    async onToolCall({ toolCall }) {
-      // console.log("toolCall", toolCall);
-      // console.log("messages", messages);
-      // if (toolCall.dynamic) return;
-      // if (toolCall.toolName === "getSearchResults") {
-      //   const { query } = toolCall.input as { query: string };
-      //   const response = await fetch("/api/get-food");
-      //   const data = await response.json();
-      //   const results = filterFoodsByQuery(data.foods, query);
-      //   addToolOutput({
-      //     tool: "getSearchResults",
-      //     toolCallId: toolCall.toolCallId,
-      //     output: { query, results },
-      //   });
-      // }
-    },
+    messages: storedMessages.length > 0 ? storedMessages : undefined,
   });
+
+  // Sync messages to store whenever they change
+  useEffect(() => {
+    if (messages.length > 0) {
+      setMessages(messages);
+    }
+  }, [messages, setMessages]);
 
   useEffect(() => {
     const urlMessage = searchParams.get("message");
