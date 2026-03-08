@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { useCartStore } from "../store/store";
+import { useCartStore, useCheckoutPopupStore } from "../../store/store";
 import { useMemo } from "react";
+import CheckoutPopup from "./CheckoutPopup";
 
 interface CartItemGroup {
   id: number;
@@ -17,11 +18,25 @@ interface CartItemGroup {
 export default function Cart() {
   const { cart, addToCart, decrementItem, removeAllOfItem, clearCart } =
     useCartStore();
+  // const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const { isCheckoutOpen, setIsCheckoutOpen } = useCheckoutPopupStore();
 
+  const handleCheckout = () => {
+    setIsCheckoutOpen(true);
+  };
 
-    const handleCheckout = () => {
-      console.log("Checkout");
-    };
+  const handleCheckoutSubmit = (data: {
+    name: string;
+    phone: string;
+    address: string;
+  }) => {
+    console.log("Order placed:", data);
+    clearCart();
+  };
+
+  const handleCheckoutClose = () => {
+    setIsCheckoutOpen(false);
+  };
 
   const groupedItems = useMemo(() => {
     const itemMap = new Map<number, CartItemGroup>();
@@ -216,11 +231,22 @@ export default function Cart() {
           </div>
 
           {/* Checkout Button */}
-          <button onClick={handleCheckout} className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-[0.98] cursor-pointer">
+          <button
+            onClick={handleCheckout}
+            className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-[0.98] cursor-pointer"
+          >
             Proceed to Checkout
           </button>
         </div>
       )}
+
+      {/* Checkout Popup */}
+      <CheckoutPopup
+        isOpen={isCheckoutOpen}
+        onClose={handleCheckoutClose}
+        onSubmit={handleCheckoutSubmit}
+        total={total}
+      />
     </div>
   );
 }

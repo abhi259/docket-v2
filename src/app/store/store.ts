@@ -82,3 +82,12 @@ export const useUserStore = create<UserState>((set) => ({
   setUserPhone: (userPhone: string) => set({ userPhone }),
   setUserAddress: (userAddress: string) => set({ userAddress }),
 }));
+
+interface CheckoutPopupState {
+  isCheckoutOpen: boolean;
+  setIsCheckoutOpen: (isCheckoutOpen: boolean) => void;
+}
+export const useCheckoutPopupStore = create<CheckoutPopupState>((set) => ({
+  isCheckoutOpen: false,
+  setIsCheckoutOpen: (isCheckoutOpen: boolean) => set({ isCheckoutOpen }),
+}));

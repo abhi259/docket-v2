@@ -1,6 +1,6 @@
 "use client";
 
-import Cart from "./_components/Cart";
+import Cart from "./_components/cart/Cart";
 import SideBar from "./_components/SideBar";
 import Body from "./_components/body/Body";
 import ChatInput from "./_components/ChatInput";

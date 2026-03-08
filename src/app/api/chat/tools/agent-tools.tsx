@@ -113,4 +113,5 @@ export const agentTools = {
   removeFromCart,
   removeAllFromCart,
   clearCart,
+  proceedToCheckout,
 };

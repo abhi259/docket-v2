@@ -5,7 +5,7 @@ import type { Message } from "@ai-sdk/react";
 import FoodCard from "../lib/common-ui/FoodCard";
 import YesNoPrompt from "../lib/common-ui/YesNoPrompt";
 import ComparisonChart from "../lib/common-ui/ComparisonChart";
-import { useCartStore } from "../store/store";
+import { useCartStore, useCheckoutPopupStore } from "../store/store";
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -24,9 +24,13 @@ export function ChatMessages({
   error,
   addToolOutput,
 }: ChatMessagesProps) {
+
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { addToCart, decrementItem, removeAllOfItem, clearCart } = useCartStore();
+  const { addToCart, decrementItem, removeAllOfItem, clearCart } =
+    useCartStore();
   const processedToolCalls = useRef<Set<string>>(new Set());
+  const { setIsCheckoutOpen } = useCheckoutPopupStore();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -36,11 +40,17 @@ export function ChatMessages({
     scrollToBottom();
   }, [messages]);
 
+  const handleProceedToCheckout = (toolName: string, toolCallId: string) => {
+    if (processedToolCalls.current.has(toolCallId)) return;
+    processedToolCalls.current.add(toolCallId);
 
-  const handleProceedToCheckout = () => {
+    setTimeout(() => {
+      setIsCheckoutOpen(true);
+    }, 3000);
+
     addToolOutput({
-      tool: "proceedToCheckout",
-      toolCallId: "",
+      tool: toolName,
+      toolCallId: toolCallId,
       output: { success: true },
     });
   };
@@ -48,7 +58,7 @@ export function ChatMessages({
   const handleCartToolCall = async (
     toolName: string,
     toolCallId: string,
-    input: any
+    input: any,
   ) => {
     if (processedToolCalls.current.has(toolCallId)) return;
     processedToolCalls.current.add(toolCallId);
@@ -59,7 +69,7 @@ export function ChatMessages({
           const response = await fetch("/api/get-food");
           const data = await response.json();
           const foodItem = data.foods.find((f: any) => f.id === input?.id);
-          
+
           if (foodItem) {
             const quantity = input?.quantity || 1;
             for (let i = 0; i < quantity; i++) {
@@ -74,7 +84,10 @@ export function ChatMessages({
             addToolOutput({
               tool: "addToCart",
               toolCallId,
-              output: { success: false, error: `Item with id ${input?.id} not found` },
+              output: {
+                success: false,
+                error: `Item with id ${input?.id} not found`,
+              },
             });
           }
         } catch (err) {
@@ -277,14 +290,28 @@ export function ChatMessages({
                           part.type === "tool-addToCart" &&
                           part.state === "input-available"
                         ) {
-                          handleCartToolCall("addToCart", part.toolCallId, part.input);
+                          handleCartToolCall(
+                            "addToCart",
+                            part.toolCallId,
+                            part.input,
+                          );
                           return (
                             <div
                               key={`${message.id}-${i}`}
                               className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm"
                             >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M5 13l4 4L19 7"
+                                />
                               </svg>
                               Adding to cart...
                             </div>
@@ -300,8 +327,18 @@ export function ChatMessages({
                               key={`${message.id}-${i}`}
                               className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm"
                             >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M5 13l4 4L19 7"
+                                />
                               </svg>
                               {part.output.success
                                 ? `Added ${part.output.quantity}x ${part.output.item} to cart`
@@ -314,7 +351,11 @@ export function ChatMessages({
                           part.type === "tool-removeFromCart" &&
                           part.state === "input-available"
                         ) {
-                          handleCartToolCall("removeFromCart", part.toolCallId, part.input);
+                          handleCartToolCall(
+                            "removeFromCart",
+                            part.toolCallId,
+                            part.input,
+                          );
                           return null;
                         }
 
@@ -327,8 +368,18 @@ export function ChatMessages({
                               key={`${message.id}-${i}`}
                               className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-amber-50 border border-amber-200 rounded-lg text-amber-700 text-sm"
                             >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M20 12H4"
+                                />
                               </svg>
                               Removed item from cart
                             </div>
@@ -339,7 +390,11 @@ export function ChatMessages({
                           part.type === "tool-removeAllFromCart" &&
                           part.state === "input-available"
                         ) {
-                          handleCartToolCall("removeAllFromCart", part.toolCallId, part.input);
+                          handleCartToolCall(
+                            "removeAllFromCart",
+                            part.toolCallId,
+                            part.input,
+                          );
                           return null;
                         }
 
@@ -352,8 +407,18 @@ export function ChatMessages({
                               key={`${message.id}-${i}`}
                               className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-amber-50 border border-amber-200 rounded-lg text-amber-700 text-sm"
                             >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                />
                               </svg>
                               Removed all instances from cart
                             </div>
@@ -364,7 +429,11 @@ export function ChatMessages({
                           part.type === "tool-clearCart" &&
                           part.state === "input-available"
                         ) {
-                          handleCartToolCall("clearCart", part.toolCallId, part.input);
+                          handleCartToolCall(
+                            "clearCart",
+                            part.toolCallId,
+                            part.input,
+                          );
                           return null;
                         }
 
@@ -377,8 +446,18 @@ export function ChatMessages({
                               key={`${message.id}-${i}`}
                               className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm"
                             >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                />
                               </svg>
                               Cart cleared
                             </div>
@@ -389,8 +468,39 @@ export function ChatMessages({
                           part.type === "tool-proceedToCheckout" &&
                           part.state === "input-available"
                         ) {
-                          handleProceedToCheckout();
-                          return null;
+                          handleProceedToCheckout(
+                            "proceedToCheckout",
+                            part.toolCallId,
+                          );
+                          return (
+                            <div
+                              key={`${message.id}-${i}`}
+                              className="flex items-center gap-2 text-gray-600"
+                            >
+                              <svg
+                                className="w-4 h-4 animate-spin text-orange-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <circle
+                                  className="opacity-25"
+                                  cx="12"
+                                  cy="12"
+                                  r="10"
+                                  stroke="currentColor"
+                                  strokeWidth="4"
+                                ></circle>
+                                <path
+                                  className="opacity-75"
+                                  fill="currentColor"
+                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                              </svg>
+                              <span>
+                                Getting your order ready for checkout...
+                              </span>
+                            </div>
+                          );
                         }
 
                         return null;

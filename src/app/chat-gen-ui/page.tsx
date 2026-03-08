@@ -5,13 +5,18 @@ import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
 } from "ai";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { ChatInput } from "./ChatInput";
 import { ChatHeader } from "./ChatHeader";
 import { ChatMessages } from "./ChatMessages";
 
 export default function Page() {
   const [input, setInput] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const hasProcessedUrlMessage = useRef(false);
+  
   const { messages, sendMessage, status, error, addToolOutput } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
@@ -32,6 +37,15 @@ export default function Page() {
       // }
     },
   });
+
+  useEffect(() => {
+    const urlMessage = searchParams.get("message");
+    if (urlMessage && !hasProcessedUrlMessage.current) {
+      hasProcessedUrlMessage.current = true;
+      sendMessage({ text: urlMessage });
+      router.replace("/chat-gen-ui", { scroll: false });
+    }
+  }, [searchParams, sendMessage, router]);
 
   console.log("messages", messages);
 

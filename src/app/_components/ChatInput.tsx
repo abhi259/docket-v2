@@ -42,13 +42,13 @@ export default function ChatInput() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
-      {/* Gradient fade from transparent to semi-opaque */}
-      <div className="absolute inset-0 bg-linear-to-t from-[#000000] via-[#000000]/50 to-transparent h-48" />
+      {/* Gradient fade from transparent to semi-opaque - pointer-events-none allows clicks through */}
+      <div className="absolute inset-0 bg-linear-to-t from-[#000000] via-[#000000]/50 to-transparent h-48 pointer-events-none" />
 
       {/* Chat input container */}
-      <div className="relative flex justify-center pb-12 pt-8 pointer-events-auto">
+      <div className="relative flex justify-center pb-12 pt-8">
         {/* Rotating border wrapper */}
-        <div className="relative w-full max-w-2xl mx-4 p-[2px] rounded-2xl overflow-hidden">
+        <div className="relative w-full max-w-2xl mx-4 p-[2px] rounded-2xl overflow-hidden pointer-events-auto">
           {/* Rotating gradient border - only render on client to avoid hydration mismatch */}
 
           <div
