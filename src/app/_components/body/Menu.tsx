@@ -1,6 +1,7 @@
 "use client";
 
 import FoodCard from "@/app/lib/common-ui/FoodCard";
+import { filterFoodsByQuery } from "@/app/lib/utils/filterFoodsByQuery";
 import { useFoodStore } from "@/app/store/store";
 import { useEffect, useState } from "react";
 
@@ -20,15 +21,7 @@ export default function Menu() {
     getFood();
   }, []);
 
-  const filteredFood = food.foods.filter(
-    (item: any) =>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.ingredients.some((ingredient: string) =>
-        ingredient.toLowerCase().includes(searchQuery.toLowerCase()),
-      ),
-  );
+  const filteredFood = filterFoodsByQuery(food.foods, searchQuery);
 
   const filteredFoodByCategory =
     selectedCategory === "All Items"
