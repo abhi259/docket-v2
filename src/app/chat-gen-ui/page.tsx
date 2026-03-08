@@ -5,14 +5,14 @@ import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
 } from "ai";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ChatInput } from "./_components/ChatInput";
 import { ChatHeader } from "./_components/ChatHeader";
 import { ChatMessages } from "./_components/ChatMessages";
 import { useChatStore } from "../store/store";
 
-export default function Page() {
+function ChatPage() {
   const [input, setInput] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -71,5 +71,13 @@ export default function Page() {
         isStreaming={isStreaming}
       />
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-screen bg-gray-50">Loading...</div>}>
+      <ChatPage />
+    </Suspense>
   );
 }

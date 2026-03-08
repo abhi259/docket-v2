@@ -137,6 +137,7 @@ npm install
 # Set up environment variables
 # Create a .env.local file with:
 ANTHROPIC_API_KEY=your_api_key_here
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 # Run development server
 npm run dev
