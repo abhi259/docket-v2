@@ -1,0 +1,463 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "name": "Butter Chicken",
+      "image": "/images/butter_chicken.png",
+      "description": "Butter Chicken, or Murgh Makhani, is perhaps the most beloved Indian dish to have crossed international borders. Tender chicken pieces are marinated in yogurt and spices, then cooked in a tandoor before being drenched in a luxurious tomato-based gravy enriched with butter, cream, and a touch of kasuri methi. The sauce strikes a perfect balance between tangy and creamy, with subtle warmth from garam masala rather than aggressive heat. It pairs exceptionally well with naan or basmati rice, and many consider it the ideal introduction to North Indian cuisine for those unfamiliar with Indian flavors. The dish originated in Delhi in the 1950s when leftover tandoori chicken was repurposed into a rich gravy. Today, every restaurant has its own interpretation—some favor sweeter notes, others a more pronounced tomato tang. Our version uses a secret blend of over fifteen spices and slow-cooked tomatoes for a depth that keeps guests coming back.",
+      "category": "North Indian",
+      "type": "Non-Vegetarian",
+      "spiceLevel": "Mild",
+      "ingredients": [
+        "Chicken",
+        "tomatoes",
+        "butter",
+        "cream",
+        "yogurt",
+        "garam masala",
+        "kasuri methi",
+        "ginger",
+        "garlic"
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": "28g",
+        "carbs": "18g",
+        "fat": "32g"
+      },
+      "price": 379,
+      "serves": 1
+    },
+    {
+      "id": 2,
+      "name": "Dal Makhani",
+      "image": "/images/dal_makhani.png",
+      "description": "Dal Makhani is the crown jewel of Punjabi lentil preparations—black urad dal and rajma beans slow-cooked for hours until they achieve a velvety, almost paste-like consistency. The lentils are simmered in tomatoes, cream, and butter, with whole spices infusing the dish as it cooks. The result is deeply comforting, with earthy undertones from the black lentils and a richness that borders on indulgent. A spoonful over steaming rice or with hot roti is pure satisfaction. Historically, this dish was prepared overnight in village kitchens, with the dal left to simmer in clay ovens. Modern kitchens replicate that patience with extended cooking times. We finish ours with a generous swirl of cream and a sprinkling of fresh coriander. It's naturally vegetarian, gluten-free, and surprisingly nutritious despite its decadent texture.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild",
+      "ingredients": [
+        "Black urad dal",
+        "rajma",
+        "tomatoes",
+        "cream",
+        "butter",
+        "ginger",
+        "garlic",
+        "cumin"
+      ],
+      "nutrition": {
+        "calories": 320,
+        "protein": "14g",
+        "carbs": "35g",
+        "fat": "16g"
+      },
+      "price": 279,
+      "serves": 1
+    },
+    {
+      "id": 3,
+      "name": "Paneer Tikka",
+      "image": "/images/paneer_tikka.png",
+      "description": "Paneer Tikka breathes life into the humble cottage cheese through fire and spice. Cubes of paneer are marinated in a vibrant paste of yogurt, turmeric, red chili, lemon juice, and tandoori masala, then threaded onto skewers and charred in a tandoor. The high heat creates a smoky crust while keeping the interior impossibly soft. Served with mint chutney and a squeeze of lemon, it's a textural revelation—crisp edges giving way to creamy, melt-in-your-mouth cheese. This dish has become a staple at every Indian celebration, from casual get-togethers to wedding feasts. The marinade can be customized—some prefer a hint of mustard, others a touch of cream for extra richness. Our version uses a 6-hour marination for maximum flavor penetration. It's perfect as an appetizer or alongside a heavier curry.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Medium",
+      "ingredients": [
+        "Paneer",
+        "yogurt",
+        "turmeric",
+        "red chili",
+        "tandoori masala",
+        "lemon",
+        "ginger-garlic paste"
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": "22g",
+        "carbs": "12g",
+        "fat": "28g"
+      },
+      "price": 319,
+      "serves": 1
+    },
+    {
+      "id": 4,
+      "name": "Palak Paneer",
+      "image": "/images/palak_paneer.png",
+      "description": "Palak Paneer transforms nutrient-dense spinach into a luxurious vegetarian main. Fresh spinach is blanched, puréed, and cooked with spices into a vibrant green gravy that gently cradles cubes of paneer. The dish walks a fine line—the spinach provides earthiness and iron, while cream and butter add silkiness. A touch of garam masala and fenugreek leaves (kasuri methi) add warmth without overwhelming the delicate vegetal notes. This dish appeals to both health-conscious diners and those seeking comfort food. The paneer absorbs the flavors beautifully while providing protein. We use young, tender spinach for a smoother purée and blanch it quickly to preserve the bright green color. Traditionally served with naan or paratha, it's also excellent with jeera rice for a lighter meal.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild",
+      "ingredients": [
+        "Paneer",
+        "spinach",
+        "cream",
+        "butter",
+        "onions",
+        "tomatoes",
+        "garam masala",
+        "kasuri methi"
+      ],
+      "nutrition": {
+        "calories": 340,
+        "protein": "18g",
+        "carbs": "22g",
+        "fat": "22g"
+      },
+      "price": 329,
+      "serves": 1
+    },
+    {
+      "id": 5,
+      "name": "Chicken Biryani",
+      "image": "/images/chicken_biryani.png",
+      "description": "Chicken Biryani is a celebration in a pot—layers of fragrant basmati rice and spiced chicken cooked together so that each grain absorbs the essence of the other. The rice is parboiled with whole spices—cardamom, cinnamon, cloves—while the chicken is marinated in yogurt and a complex biryani masala. The layers are assembled with fried onions, mint, and saffron-infused milk, then sealed and cooked on dum (slow steam) to create a dish where every component has contributed to the whole. Regional variations abound—Hyderabadi, Kolkata, Lucknowi—each with distinct characteristics. Our version draws from the Hyderabadi tradition with its balance of heat and aroma. The telltale sign of a quality biryani is the orange-hued rice grains and the tender chicken that falls apart at the touch. Served with raita, it's a complete meal that demands your full attention.",
+      "category": "North Indian",
+      "type": "Non-Vegetarian",
+      "spiceLevel": "Medium-Hot",
+      "ingredients": [
+        "Basmati rice",
+        "chicken",
+        "yogurt",
+        "biryani masala",
+        "onions",
+        "saffron",
+        "mint",
+        "spices"
+      ],
+      "nutrition": {
+        "calories": 580,
+        "protein": "32g",
+        "carbs": "62g",
+        "fat": "22g"
+      },
+      "price": 429,
+      "serves": 1
+    },
+    {
+      "id": 6,
+      "name": "Tandoori Chicken",
+      "image": "/images/tandoori_chicken.png",
+      "description": "Tandoori Chicken is the original Indian grilled chicken—marinated in yogurt, lime, and a proprietary blend of spices including Kashmiri red chili for that signature crimson hue. The chicken is cooked in a clay tandoor at temperatures exceeding 400°C, which creates a charred exterior while keeping the meat remarkably juicy. The yogurt in the marinade acts as a tenderizer, while the spices form a crust that's both aromatic and slightly smoky. The dish was popularized globally by Moti Mahal in Delhi, but its roots go back centuries to the Mughal courts. We use free-range chicken and a 24-hour marination for authentic texture. Served with sliced onions, lemon wedges, and mint chutney, it's a showstopper that appeals to spice lovers and mild-palate diners alike—the heat level can be adjusted in the marinade.",
+      "category": "North Indian",
+      "type": "Non-Vegetarian",
+      "spiceLevel": "Medium",
+      "ingredients": [
+        "Chicken",
+        "yogurt",
+        "tandoori masala",
+        "Kashmiri chili",
+        "lemon",
+        "ginger-garlic paste"
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": "38g",
+        "carbs": "8g",
+        "fat": "28g"
+      },
+      "price": 399,
+      "serves": 1
+    },
+    {
+      "id": 7,
+      "name": "Rogan Josh",
+      "image": "/images/rogan_josh.png",
+      "description": "Rogan Josh hails from Kashmir, where the cold climate demands dishes that warm from within. Tender lamb is braised in a stunning red gravy colored by Kashmiri chilies and an array of aromatic spices. The dish gets its name from \"rogan\" (oil) and \"josh\" (heat)—referring to the crimson oil that rises to the surface. Fennel, ginger, and asafoetida add layers of flavor that distinguish it from other North Indian curries. The slow braising process is essential—the lamb should fall apart at the touch of a fork while the gravy has concentrated into something profoundly flavorful. We use goat meat as well for those who prefer a slightly gamier profile. Traditionally served with naan or steamed rice, it's a dish that rewards patience in both preparation and eating.",
+      "category": "North Indian",
+      "type": "Non-Vegetarian",
+      "spiceLevel": "Medium",
+      "ingredients": [
+        "Lamb",
+        "Kashmiri chilies",
+        "yogurt",
+        "fennel",
+        "ginger",
+        "garlic",
+        "spices"
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": "35g",
+        "carbs": "14g",
+        "fat": "36g"
+      },
+      "price": 459,
+      "serves": 1
+    },
+    {
+      "id": 8,
+      "name": "Chole Bhature",
+      "image": "/images/chole_bhature.png",
+      "description": "Chole Bhature is Delhi's answer to the perfect brunch—spiced chickpeas paired with deep-fried, fluffy bread that puffs up like a balloon. The chole is cooked with pomegranate seeds, tea leaves, and a complex masala until the chickpeas are soft but still hold their shape. The bhature is made from maida dough enriched with yogurt, rolled thin and deep-fried until it inflates into a golden, crisp-yet-soft pillow of carbohydrate heaven. The combination is pure indulgence—the spiced chickpeas with their tangy, slightly sour gravy are scooped up with torn pieces of bhature. It's typically served with pickled onions and green chilies. This is not diet food; it's the kind of meal you order when you want to be gloriously full. A weekend breakfast favorite and a dish that defines North Indian comfort food.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Medium",
+      "ingredients": [
+        "Chickpeas",
+        "maida",
+        "yogurt",
+        "chole masala",
+        "pomegranate seeds",
+        "spices"
+      ],
+      "nutrition": {
+        "calories": 650,
+        "protein": "18g",
+        "carbs": "88g",
+        "fat": "26g"
+      },
+      "price": 249,
+      "serves": 1
+    },
+    {
+      "id": 9,
+      "name": "Aloo Paratha",
+      "image": "/images/aloo_paratha.png",
+      "description": "Aloo Paratha is the breakfast that fuels a nation—whole wheat flatbread stuffed with spiced mashed potatoes, rolled thin, and pan-fried with ghee until golden and crisp. The potato filling is seasoned with cumin, coriander, ginger, and green chilies, then encased in the dough and cooked on a tawa. Each bite offers crisp, buttery layers and a soft, flavorful filling. It's traditionally served with butter, yogurt, and pickle—a complete meal in itself. This is the breakfast you grew up with if you're from North India—the kind of food that represents home and comfort. We make ours with attention to the layers and the seasoning of the filling. The paratha should be crisp outside but not hard, and the potato should be flavorful without being mushy. Vegetarian, filling, and utterly satisfying. Perfect with a cup of masala chai.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild",
+      "ingredients": [
+        "Whole wheat flour",
+        "potatoes",
+        "cumin",
+        "coriander",
+        "ginger",
+        "green chilies",
+        "ghee"
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": "10g",
+        "carbs": "58g",
+        "fat": "16g"
+      },
+      "price": 149,
+      "serves": 1
+    },
+    {
+      "id": 10,
+      "name": "Naan",
+      "image": "/images/naan.png",
+      "description": "Naan is the pillowy, tandoor-baked flatbread that has become synonymous with Indian dining worldwide. Made from maida (refined flour), yogurt, milk, and leavened with yeast, the dough is slapped onto the walls of a blazing hot tandoor where it cooks in minutes. The result is a soft, slightly chewy bread with characteristic charred spots and a hint of smokiness. One side is typically brushed with butter or ghee before serving. The beauty of naan lies in its versatility—it's the perfect vehicle for rich curries, excellent on its own, and can be enhanced with garlic, butter, or stuffed with various fillings. We offer plain, butter, and garlic versions. The key is the tandoor's heat, which creates that signature texture that's impossible to replicate in a regular oven. Essential for mopping up every last bit of curry.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Neutral",
+      "ingredients": ["Maida", "yogurt", "milk", "yeast", "butter"],
+      "nutrition": {
+        "calories": 260,
+        "protein": "8g",
+        "carbs": "45g",
+        "fat": "6g"
+      },
+      "price": 49,
+      "serves": 1
+    },
+    {
+      "id": 11,
+      "name": "Kadai Chicken",
+      "image": "/images/kadai_chicken.png",
+      "description": "Kadai Chicken takes its name from the wok-like vessel it's cooked in—a semi-dry preparation with bell peppers, onions, and a coarsely ground kadai masala. The chicken is cooked until tender, then tossed with the vegetables and masala at high heat, creating a dish that's fragrant, slightly smoky, and texturally diverse. The bell peppers should still have a bit of crunch; the onions should be caramelized at the edges. The kadai masala—typically roasted coriander seeds, dried red chilies, and sometimes fennel—is ground coarsely rather than into a fine powder, giving the dish a rustic texture and pronounced spice flavor. It's not as creamy as butter chicken or as saucy as a standard curry; it's somewhere in between, with just enough gravy to coat the chicken and vegetables. Best enjoyed with naan or roti, it's a crowd-pleaser that balances heat with flavor.",
+      "category": "North Indian",
+      "type": "Non-Vegetarian",
+      "spiceLevel": "Medium",
+      "ingredients": [
+        "Chicken",
+        "bell peppers",
+        "onions",
+        "kadai masala",
+        "tomatoes",
+        "ginger"
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": "34g",
+        "carbs": "18g",
+        "fat": "24g"
+      },
+      "price": 389,
+      "serves": 1
+    },
+    {
+      "id": 12,
+      "name": "Rajma Chawal",
+      "image": "/images/rajma_chawal.png",
+      "description": "Rajma Chawal is the soul food of North India—kidney beans simmered in a spiced tomato-onion gravy, served over steamed basmati rice. The rajma must be cooked until soft and creamy, absorbing the flavors of the masala while still holding their shape. The gravy should be thick enough to cling to the beans and the rice. This is the meal that defines comfort—simple, satisfying, and deeply nostalgic for anyone who grew up eating it. The key is in the overnight soaking of the beans and the slow cooking that follows. We add a tempering of cumin and garlic at the end for extra aroma. Some prefer it slightly soupy; others like it thicker—we aim for a middle ground. Served with a dollop of ghee and perhaps some pickled onions, it's a complete, protein-rich meal that vegetarians and meat-eaters alike can appreciate. Sunday lunch in a bowl.",
+      "category": "North Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild-Medium",
+      "ingredients": [
+        "Kidney beans",
+        "tomatoes",
+        "onions",
+        "cumin",
+        "garam masala",
+        "ginger",
+        "garlic"
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": "18g",
+        "carbs": "72g",
+        "fat": "12g"
+      },
+      "price": 199,
+      "serves": 1
+    },
+    {
+      "id": 13,
+      "name": "Pani Puri",
+      "image": "/images/pani_puri.png",
+      "description": "Pani Puri is the iconic Indian street snack—hollow, crispy puris filled with spiced potatoes and chickpeas, then dunked in tangy, spicy, mint-flavored water (pani). The experience is all about the burst of flavors and textures: the crunch of the puri, the softness of the filling, and the explosion of the pani in your mouth. It's meant to be eaten in one or two bites, creating a sensory overload that's utterly addictive. The pani is the star here—a blend of mint, coriander, tamarind, black salt, cumin, and chilies, creating something that's simultaneously sweet, tangy, spicy, and refreshing. Some regions prefer their pani more tangy; others want heat. We offer both sweet and spicy versions. Traditionally sold by street vendors who expertly fill and serve them rapid-fire, pani puri has become an essential part of Indian food culture. Six pieces per serving is standard, though one round is rarely enough.",
+      "category": "North Indian / Street Food",
+      "type": "Vegetarian",
+      "spiceLevel": "Medium",
+      "ingredients": [
+        "Puris",
+        "potatoes",
+        "chickpeas",
+        "mint",
+        "tamarind",
+        "spices"
+      ],
+      "nutrition": {
+        "calories": 2406,
+        "protein": "6g",
+        "carbs": "42g",
+        "fat": "6g"
+      },
+      "price": 99,
+      "serves": 1
+    },
+    {
+      "id": 14,
+      "name": "Pav Bhaji",
+      "image": "/images/pav_bhaji.png",
+      "description": "Pav Bhaji is Mumbai's gift to street food—a thick vegetable curry (bhaji) served with buttered, toasted bread rolls (pav). The bhaji is made by mashing a medley of vegetables—potatoes, tomatoes, peas, bell peppers, cauliflower—with pav bhaji masala, butter, and a generous amount of butter. The result is a rich, spiced mash that's both comforting and indulgent. The pav is slathered with butter and toasted on a griddle until crisp at the edges. The dish originated as a quick lunch option for Mumbai's textile mill workers and has since become a beloved street food across India. The secret is in the pav bhaji masala—a blend that typically includes dried mango powder, red chilies, and aromatic spices. We finish ours with a pat of butter that melts into the hot bhaji, creating a pool of flavor. Served with chopped onions, lemon wedges, and perhaps more butter, it's carb-heavy, unapologetically rich, and utterly satisfying.",
+      "category": "North Indian / Street Food",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild-Medium",
+      "ingredients": [
+        "Mixed vegetables",
+        "pav bhaji masala",
+        "butter",
+        "pav bread",
+        "onions"
+      ],
+      "nutrition": {
+        "calories": 580,
+        "protein": "12g",
+        "carbs": "72g",
+        "fat": "26g"
+      },
+      "price": 179,
+      "serves": 1
+    },
+    {
+      "id": 15,
+      "name": "Samosa",
+      "image": "/images/samosa.png",
+      "description": "Samosa is the quintessential Indian snack—a triangular pastry filled with spiced potatoes and peas, deep-fried until golden and crisp. The outer shell is made from maida dough, rolled thin and folded into a cone shape before being filled and sealed. The filling is a mix of boiled potatoes, peas, and a masala blend that includes cumin, coriander, and sometimes a hint of ginger. The result is crispy, savory, and utterly addictive. Samosas are ubiquitous in India—sold at street corners, train stations, and served at parties. The key to a great samosa is the contrast between the crispy exterior and the soft, flavorful filling. We serve ours hot with mint chutney and tamarind chutney. They're vegetarian, perfect for snacking, and the kind of food that transcends occasions—equally at home at a fancy gathering or a casual tea break. Two pieces per serving is standard, though ordering more is common.",
+      "category": "North Indian / Street Food",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild-Medium",
+      "ingredients": [
+        "Maida",
+        "potatoes",
+        "peas",
+        "cumin",
+        "coriander",
+        "spices"
+      ],
+      "nutrition": {
+        "calories": 2802,
+        "protein": "6g",
+        "carbs": "38g",
+        "fat": "12g"
+      },
+      "price": 79,
+      "serves": 1
+    },
+    {
+      "id": 16,
+      "name": "Jalebi",
+      "image": "/images/jalebi.png",
+      "description": "Jalebi is the pretzel-shaped sweet that's both festive and everyday—a fermented batter of maida and yogurt is piped into hot oil in spiral shapes, deep-fried until crisp, then soaked in sugar syrup. The result is sticky, sweet, and has a slight tang from the fermentation. The exterior is crispy when fresh; the interior absorbs the syrup. Eaten hot, it's one of India's most beloved sweets, often paired with milk or rabri for breakfast or as a dessert. The art of making jalebi lies in the consistency of the batter and the skill of piping it into the oil—the spirals should be even and the frying should be just right so they're crisp but not hard. The sugar syrup must be the right temperature; too hot and the jalebi becomes soggy, too cool and it won't absorb enough. We make ours fresh, so they arrive warm and crispy. They're vegetarian, gluten-full, and unapologetically sweet. A celebration in every bite.",
+      "category": "North Indian / Desserts",
+      "type": "Vegetarian",
+      "spiceLevel": "Sweet",
+      "ingredients": ["Maida", "yogurt", "sugar syrup", "saffron"],
+      "nutrition": {
+        "calories": 320100,
+        "protein": "4g",
+        "carbs": "68g",
+        "fat": "6g"
+      },
+      "price": 129,
+      "serves": 1
+    },
+    {
+      "id": 17,
+      "name": "Gulab Jamun",
+      "image": "/images/gulab_jamun.png",
+      "description": "Gulab Jamun are soft, spongy balls of milk solids (khoya) and flour, deep-fried until golden and then soaked in rose-scented sugar syrup. They emerge from the syrup swollen and sweet, with a texture that's simultaneously firm and melt-in-your-mouth. The rose water in the syrup adds a floral note that distinguishes them from other Indian sweets. A cardamom pod or two in the syrup adds warmth and complexity. These are perhaps the most popular Indian sweet, served at weddings, festivals, and restaurants. The key is in the dough—it must be soft enough to absorb the syrup but firm enough to hold its shape. We make ours with a perfect ratio of khoya to flour, fry them at the right temperature, and let them soak until they've absorbed the flavors. Served warm or at room temperature, they're vegetarian, indulgent, and the perfect ending to an Indian meal. Two pieces per serving is standard.",
+      "category": "North Indian / Desserts",
+      "type": "Vegetarian",
+      "spiceLevel": "Sweet",
+      "ingredients": [
+        "Khoya",
+        "flour",
+        "sugar syrup",
+        "rose water",
+        "cardamom"
+      ],
+      "nutrition": {
+        "calories": 3202,
+        "protein": "6g",
+        "carbs": "52g",
+        "fat": "10g"
+      },
+      "price": 99,
+      "serves": 1
+    },
+    {
+      "id": 18,
+      "name": "Lassi",
+      "image": "/images/lassi.png",
+      "description": "Lassi is North India's quintessential yogurt drink—cooling, refreshing, and endlessly customizable. The base is yogurt thinned with water and whisked until frothy. Sweet lassi adds sugar and sometimes rose water; salty lassi (chaas) includes cumin, mint, and a pinch of salt; mango lassi blends in seasonal mango pulp for a tropical twist. In the summer heat, there's nothing more restorative. We use fresh, full-fat yogurt for creaminess and authentic flavor. The sweet version is our bestseller, but the salty lassi pairs beautifully with spicy food—the probiotics and electrolytes make it the perfect accompaniment to a heavy meal. Mango lassi is a crowd-pleaser, especially when made with Alphonso mangoes in season. All versions are vegetarian and gluten-free.",
+      "category": "Beverages",
+      "type": "Vegetarian",
+      "spiceLevel": "Neutral",
+      "ingredients": ["Yogurt", "water", "sugar/salt/mango", "spices"],
+      "nutrition": {
+        "calories": 180,
+        "protein": "",
+        "carbs": "",
+        "fat": ""
+      },
+      "price": 79,
+      "serves": 1
+    },
+    {
+      "id": 19,
+      "name": "Dosa",
+      "image": "/images/dosa.png",
+      "description": "The dosa is South India's most celebrated export—a thin, crisp crepe made from fermented rice and lentil batter. The fermentation process, which takes 12-24 hours, creates a tangy flavor and light, airy texture. Plain dosa is the minimalist version: golden, crisp, and perfect with chutneys and sambar. Masala dosa stuffs the center with spiced potatoes. Mysore dosa comes with a fiery red chutney spread on the inside before adding the potato filling. Each region has its own variation; we honor the tradition while ensuring consistency. A well-made dosa should be crisp at the edges, slightly soft in the center, and have those characteristic golden-brown spots. We serve ours with coconut chutney, tomato chutney, and sambar—a lentil-based vegetable stew. It's naturally gluten-free, fermented (good for gut health), and surprisingly light despite its size. Breakfast, lunch, or a late-night snack—the dosa knows no time boundaries.",
+      "category": "South Indian",
+      "type": "Vegetarian",
+      "spiceLevel": "Mild (Plain) / Medium (Masala) / Hot (Mysore)",
+      "ingredients": ["Rice", "urad dal", "potatoes (masala)", "spices"],
+      "nutrition": {
+        "calories": 280,
+        "protein": "",
+        "carbs": "",
+        "fat": ""
+      },
+      "price": 149,
+      "serves": 1
+    }
+  ],
+  "totalCount": 100
+}

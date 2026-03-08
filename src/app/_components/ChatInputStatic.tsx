@@ -4,12 +4,18 @@ import { useState, useRef, useEffect } from "react";
 import { Send, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function ChatInput() {
+export default function ChatInputStatic() {
   const [message, setMessage] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [rotation, setRotation] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -46,7 +52,11 @@ export default function ChatInput() {
       <div className="absolute inset-0 bg-linear-to-t from-[#000000] via-[#000000]/50 to-transparent h-48 pointer-events-none" />
 
       {/* Chat input container */}
-      <div className="relative flex justify-center pb-12 pt-8">
+      <div
+        className={`relative flex justify-center pb-12 pt-8 transition-all duration-700 delay-1000 ease-out ${
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+        }`}
+      >
         {/* Rotating border wrapper */}
         <div className="relative w-full max-w-2xl mx-4 p-[2px] rounded-2xl overflow-hidden pointer-events-auto">
           {/* Rotating gradient border - only render on client to avoid hydration mismatch */}

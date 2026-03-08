@@ -1,9 +1,8 @@
 "use client";
 
-import Cart from "./_components/cart/Cart";
+import ChatInputStatic from "./_components/ChatInputStatic";
 import SideBar from "./_components/SideBar";
 import Body from "./_components/body/Body";
-import ChatInput from "./_components/ChatInput";
 
 export default function Home() {
   return (
@@ -12,10 +11,9 @@ export default function Home() {
         <div className="flex w-full h-full bg-white">
           <SideBar />
           <Body />
-          {/* <Cart /> */}
         </div>
       </div>
-      <ChatInput />
+      <ChatInputStatic />
     </div>
   );
 }

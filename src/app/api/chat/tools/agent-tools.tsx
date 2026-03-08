@@ -1,6 +1,11 @@
 import { filterFoodsByQuery } from "@/app/lib/utils/filterFoodsByQuery";
 import { tool } from "ai";
 import z from "zod";
+import foodData from "@/app/api/get-food/Foods.json";
+
+const getFoodsByIds = (ids: number[]) => {
+  return foodData.foods.filter((f: any) => ids.includes(f.id));
+};
 
 export const getSearchResults = tool({
   description:
@@ -9,11 +14,7 @@ export const getSearchResults = tool({
     query: z.string().describe("The search query to find matching food items"),
   }),
   execute: async ({ query }) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/get-food`,
-    );
-    const data = await response.json();
-    const results = filterFoodsByQuery(data.foods, query);
+    const results = filterFoodsByQuery(foodData.foods, query);
     return { query, results };
   },
 });
@@ -25,11 +26,7 @@ export const renderFoodCards = tool({
     ids: z.array(z.number()).describe("IDs of food items to display as cards"),
   }),
   execute: async ({ ids }) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/get-food`,
-    );
-    const data = await response.json();
-    return data.foods.filter((f: any) => ids.includes(f.id));
+    return getFoodsByIds(ids);
   },
 });
 
@@ -50,12 +47,7 @@ export const compareDishes = tool({
     ids: z.array(z.number()).describe("IDs of the dishes to compare"),
   }),
   execute: async ({ ids }) => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/get-food`,
-    );
-    const data = await response.json();
-    const dishes = data.foods.filter((f: any) => ids.includes(f.id));
-    return { dishes };
+    return { dishes: getFoodsByIds(ids) };
   },
 });
 
