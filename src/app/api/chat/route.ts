@@ -2,6 +2,8 @@ import { anthropic } from "@ai-sdk/anthropic";
 import { streamText, convertToModelMessages } from "ai";
 import { agentTools } from "./tools/agent-tools";
 
+const systemPrompt = `You are a helpful food assistant. Use tools to search and display food items. Follow tool descriptions for the correct workflow.`;
+
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
@@ -9,6 +11,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model,
+    system: systemPrompt,
     messages: await convertToModelMessages(messages, { tools: agentTools }),
     tools: agentTools,
   });

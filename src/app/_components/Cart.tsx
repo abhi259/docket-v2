@@ -18,6 +18,11 @@ export default function Cart() {
   const { cart, addToCart, decrementItem, removeAllOfItem, clearCart } =
     useCartStore();
 
+
+    const handleCheckout = () => {
+      console.log("Checkout");
+    };
+
   const groupedItems = useMemo(() => {
     const itemMap = new Map<number, CartItemGroup>();
     cart.forEach((item) => {
@@ -211,7 +216,7 @@ export default function Cart() {
           </div>
 
           {/* Checkout Button */}
-          <button className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-[0.98] cursor-pointer">
+          <button onClick={handleCheckout} className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25 active:scale-[0.98] cursor-pointer">
             Proceed to Checkout
           </button>
         </div>

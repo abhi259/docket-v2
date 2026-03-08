@@ -65,3 +65,20 @@ export const useCartStore = create<CartState>((set) => ({
     set((state) => ({ cart: state.cart.filter((i) => i.id !== itemId) })),
   clearCart: () => set({ cart: [] }),
 }));
+
+interface UserState {
+  userName: string;
+  userPhone: string;
+  userAddress: string;
+  setUserName: (userName: string) => void;
+  setUserPhone: (userPhone: string) => void;
+  setUserAddress: (userAddress: string) => void;
+}
+export const useUserStore = create<UserState>((set) => ({
+  userName: "",
+  userPhone: "",
+  userAddress: "",
+  setUserName: (userName: string) => set({ userName }),
+  setUserPhone: (userPhone: string) => set({ userPhone }),
+  setUserAddress: (userAddress: string) => set({ userAddress }),
+}));

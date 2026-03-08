@@ -33,6 +33,8 @@ export default function Page() {
     },
   });
 
+  console.log("messages", messages);
+
   const handleSubmit = () => {
     const text = input.trim();
     if (!text || status === "streaming") return;
@@ -52,6 +54,7 @@ export default function Page() {
         messages={messages}
         isStreaming={isStreaming}
         error={error}
+        addToolOutput={addToolOutput}
       />
 
       {/* Input Area */}
