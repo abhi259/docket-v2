@@ -7,9 +7,9 @@ import {
 } from "ai";
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { ChatInput } from "./ChatInput";
-import { ChatHeader } from "./ChatHeader";
-import { ChatMessages } from "./ChatMessages";
+import { ChatInput } from "./_components/ChatInput";
+import { ChatHeader } from "./_components/ChatHeader";
+import { ChatMessages } from "./_components/ChatMessages";
 import { useChatStore } from "../store/store";
 
 export default function Page() {
@@ -40,8 +40,6 @@ export default function Page() {
       router.replace("/chat-gen-ui", { scroll: false });
     }
   }, [searchParams, sendMessage, router]);
-
-  console.log("messages", messages);
 
   const handleSubmit = () => {
     const text = input.trim();
