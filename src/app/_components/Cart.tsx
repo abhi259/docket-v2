@@ -15,7 +15,8 @@ interface CartItemGroup {
 }
 
 export default function Cart() {
-  const { cart, addToCart, decrementItem, removeAllOfItem, clearCart } = useCartStore();
+  const { cart, addToCart, decrementItem, removeAllOfItem, clearCart } =
+    useCartStore();
 
   const groupedItems = useMemo(() => {
     const itemMap = new Map<number, CartItemGroup>();
@@ -59,7 +60,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="min-w-[360px] h-full bg-gray-100 flex flex-col border-l border-gray-200">
+    <div className="min-w-[360px] h-full bg-gray-100 flex flex-col border-l border-gray-200 sticky top-0 z-10">
       {/* Header */}
       <div className="p-5 border-b border-gray-100">
         <div className="flex items-center justify-between">

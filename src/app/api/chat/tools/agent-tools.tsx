@@ -8,13 +8,14 @@ export const getSearchResults = tool({
   inputSchema: z.object({
     query: z.string().describe("The search query to find matching food items"),
   }),
-//   execute: async ({ query }) => {
-//     const response = await fetch("/api/get-food");
-//     const data = await response.json();
-//     const foods = data.foods;
-//     const results = filterFoodsByQuery(foods, query);
-//     return { query, results: results };
-//   },
+  execute: async ({ query }) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/get-food`,
+    );
+    const data = await response.json();
+    const results = filterFoodsByQuery(data.foods, query);
+    return { query, results };
+  },
 });
 
 export const agentTools = {
