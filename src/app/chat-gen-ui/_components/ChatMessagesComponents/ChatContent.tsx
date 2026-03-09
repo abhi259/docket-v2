@@ -30,7 +30,7 @@ export default function ChatContent({
   const handleCheckoutSubmit = (
     toolCallId: string,
     data: { name: string; phone: string; address: string },
-    cartItems: { id: number; name: string; price: number; image: string }[]
+    cartItems: { id: number; name: string; price: number; image: string }[],
   ) => {
     if (submittedCheckouts.current.has(toolCallId)) return;
     submittedCheckouts.current.add(toolCallId);
@@ -45,7 +45,13 @@ export default function ChatContent({
         }
         return acc;
       },
-      [] as { id: number; name: string; price: number; image: string; quantity: number }[]
+      [] as {
+        id: number;
+        name: string;
+        price: number;
+        image: string;
+        quantity: number;
+      }[],
     );
 
     const total = cartItems.reduce((sum, item) => sum + item.price, 0);
@@ -137,6 +143,8 @@ export default function ChatContent({
       }
     }
   };
+
+  
 
   return (
     <>
@@ -449,8 +457,10 @@ export default function ChatContent({
                     part.type === "tool-proceedToCheckout" &&
                     part.state === "input-available"
                   ) {
-                    const isAlreadySubmitted = submittedCheckouts.current.has(part.toolCallId);
-                    
+                    const isAlreadySubmitted = submittedCheckouts.current.has(
+                      part.toolCallId,
+                    );
+
                     if (isAlreadySubmitted) {
                       return (
                         <div
@@ -474,9 +484,9 @@ export default function ChatContent({
                         </div>
                       );
                     }
-                    
+
                     const currentCart = useCartStore.getState().cart;
-                    
+
                     return (
                       <div key={`${message.id}-${i}`} className="my-4">
                         <p className="text-gray-700 font-medium mb-3">
@@ -484,7 +494,11 @@ export default function ChatContent({
                         </p>
                         <InlineCheckoutForm
                           onSubmit={(data) =>
-                            handleCheckoutSubmit(part.toolCallId, data, currentCart)
+                            handleCheckoutSubmit(
+                              part.toolCallId,
+                              data,
+                              currentCart,
+                            )
                           }
                         />
                       </div>
@@ -496,7 +510,11 @@ export default function ChatContent({
                     part.state === "output-available"
                   ) {
                     const output = part.output;
-                    if (output?.success && output?.items && output?.orderDetails) {
+                    if (
+                      output?.success &&
+                      output?.items &&
+                      output?.orderDetails
+                    ) {
                       return (
                         <div key={`${message.id}-${i}`}>
                           <OrderConfirmation

@@ -27,6 +27,8 @@ function ChatPage() {
     messages: storedMessages.length > 0 ? storedMessages : undefined,
   });
 
+  console.log("messages", messages);
+
   const hasPendingHumanInputTool = useMemo(() => {
     const lastMessage = messages[messages.length - 1];
     if (!lastMessage || lastMessage.role !== "assistant") return false;
