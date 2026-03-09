@@ -6,6 +6,7 @@ import FoodCard from "../../../lib/common-ui/FoodCard";
 import YesNoPrompt from "../../../lib/common-ui/YesNoPrompt";
 import ComparisonChart from "../../../lib/common-ui/ComparisonChart";
 import InlineCheckoutForm from "../../../lib/common-ui/InlineCheckoutForm";
+import OrderConfirmation from "../../../lib/common-ui/OrderConfirmation";
 import { useCartStore } from "../../../store/store";
 
 interface ChatContentProps {
@@ -28,10 +29,26 @@ export default function ChatContent({
 
   const handleCheckoutSubmit = (
     toolCallId: string,
-    data: { name: string; phone: string; address: string }
+    data: { name: string; phone: string; address: string },
+    cartItems: { id: number; name: string; price: number; image: string }[]
   ) => {
     if (submittedCheckouts.current.has(toolCallId)) return;
     submittedCheckouts.current.add(toolCallId);
+
+    const itemsWithQuantity = cartItems.reduce(
+      (acc, item) => {
+        const existing = acc.find((i) => i.id === item.id);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          acc.push({ ...item, quantity: 1 });
+        }
+        return acc;
+      },
+      [] as { id: number; name: string; price: number; image: string; quantity: number }[]
+    );
+
+    const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
     addToolOutput({
       tool: "proceedToCheckout",
@@ -39,6 +56,8 @@ export default function ChatContent({
       output: {
         success: true,
         orderDetails: data,
+        items: itemsWithQuantity,
+        total,
         message: `Order placed successfully for ${data.name}`,
       },
     });
@@ -121,9 +140,9 @@ export default function ChatContent({
 
   return (
     <>
-      {messages.map((message) => (
+      {messages.map((message, messageIndex) => (
         <div
-          key={message.id}
+          key={`${message.id}-${messageIndex}`}
           className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
         >
           <div
@@ -456,6 +475,8 @@ export default function ChatContent({
                       );
                     }
                     
+                    const currentCart = useCartStore.getState().cart;
+                    
                     return (
                       <div key={`${message.id}-${i}`} className="my-4">
                         <p className="text-gray-700 font-medium mb-3">
@@ -463,7 +484,7 @@ export default function ChatContent({
                         </p>
                         <InlineCheckoutForm
                           onSubmit={(data) =>
-                            handleCheckoutSubmit(part.toolCallId, data)
+                            handleCheckoutSubmit(part.toolCallId, data, currentCart)
                           }
                         />
                       </div>
@@ -474,6 +495,20 @@ export default function ChatContent({
                     part.type === "tool-proceedToCheckout" &&
                     part.state === "output-available"
                   ) {
+                    const output = part.output;
+                    if (output?.success && output?.items && output?.orderDetails) {
+                      return (
+                        <div key={`${message.id}-${i}`}>
+                          <OrderConfirmation
+                            customerName={output.orderDetails.name}
+                            phone={output.orderDetails.phone}
+                            address={output.orderDetails.address}
+                            items={output.items}
+                            total={output.total}
+                          />
+                        </div>
+                      );
+                    }
                     return (
                       <div
                         key={`${message.id}-${i}`}

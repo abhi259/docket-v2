@@ -30,11 +30,13 @@ function ChatPage() {
   const hasPendingHumanInputTool = useMemo(() => {
     const lastMessage = messages[messages.length - 1];
     if (!lastMessage || lastMessage.role !== "assistant") return false;
-    
+
     return lastMessage.parts.some((part: any) => {
       if (!part.type?.startsWith("tool-")) return false;
       const toolName = part.type.replace("tool-", "");
-      return HUMAN_INPUT_TOOLS.includes(toolName) && part.state === "input-available";
+      return (
+        HUMAN_INPUT_TOOLS.includes(toolName) && part.state === "input-available"
+      );
     });
   }, [messages]);
 
@@ -62,6 +64,7 @@ function ChatPage() {
   };
 
   const isStreaming = status === "streaming";
+  const isLoading = status === "submitted" || status === "streaming";
   const isInputDisabled = isStreaming || hasPendingHumanInputTool;
 
   return (
@@ -72,7 +75,7 @@ function ChatPage() {
       {/* Messages Area */}
       <ChatMessages
         messages={messages}
-        isStreaming={isStreaming}
+        isLoading={isLoading}
         error={error}
         addToolOutput={addToolOutput}
       />
@@ -83,7 +86,7 @@ function ChatPage() {
         setInput={setInput}
         onSubmit={handleSubmit}
         isStreaming={isStreaming}
-        disabled={isInputDisabled}
+        disabled={isInputDisabled || isLoading}
       />
     </div>
   );
@@ -91,7 +94,13 @@ function ChatPage() {
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-screen bg-gray-50">Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center h-screen bg-gray-50">
+          Loading...
+        </div>
+      }
+    >
       <ChatPage />
     </Suspense>
   );

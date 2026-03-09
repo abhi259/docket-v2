@@ -8,7 +8,7 @@ import ChatContent from "./ChatMessagesComponents/ChatContent";
 
 interface ChatMessagesProps {
   messages: UIMessage[];
-  isStreaming: boolean;
+  isLoading: boolean;
   error?: Error;
   addToolOutput: (output: {
     tool: string;
@@ -19,7 +19,7 @@ interface ChatMessagesProps {
 
 export function ChatMessages({
   messages,
-  isStreaming,
+  isLoading,
   error,
   addToolOutput,
 }: ChatMessagesProps) {
@@ -42,7 +42,7 @@ export function ChatMessages({
           <div className="space-y-6">
             <ChatContent messages={messages} addToolOutput={addToolOutput} />
 
-            {isStreaming && <StreamIndicator />}
+            {isLoading && <StreamIndicator />}
 
             {/* Error message */}
             {error && (
