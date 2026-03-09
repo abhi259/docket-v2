@@ -42,10 +42,7 @@ export function ChatMessages({
           <div className="space-y-6">
             <ChatContent messages={messages} addToolOutput={addToolOutput} />
 
-            {/* Streaming indicator */}
-            {isStreaming && messages[messages.length - 1]?.role === "user" && (
-              <StreamIndicator />
-            )}
+            {isStreaming && <StreamIndicator />}
 
             {/* Error message */}
             {error && (
