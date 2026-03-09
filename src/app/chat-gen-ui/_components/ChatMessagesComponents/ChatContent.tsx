@@ -5,7 +5,8 @@ import type { UIMessage } from "@ai-sdk/react";
 import FoodCard from "../../../lib/common-ui/FoodCard";
 import YesNoPrompt from "../../../lib/common-ui/YesNoPrompt";
 import ComparisonChart from "../../../lib/common-ui/ComparisonChart";
-import { useCartStore, useCheckoutPopupStore } from "../../../store/store";
+import InlineCheckoutForm from "../../../lib/common-ui/InlineCheckoutForm";
+import { useCartStore } from "../../../store/store";
 
 interface ChatContentProps {
   messages: UIMessage[];
@@ -23,20 +24,23 @@ export default function ChatContent({
   const { addToCart, decrementItem, removeAllOfItem, clearCart } =
     useCartStore();
   const processedToolCalls = useRef<Set<string>>(new Set());
-  const { setIsCheckoutOpen } = useCheckoutPopupStore();
+  const submittedCheckouts = useRef<Set<string>>(new Set());
 
-  const handleProceedToCheckout = (toolName: string, toolCallId: string) => {
-    if (processedToolCalls.current.has(toolCallId)) return;
-    processedToolCalls.current.add(toolCallId);
-
-    setTimeout(() => {
-      setIsCheckoutOpen(true);
-    }, 3000);
+  const handleCheckoutSubmit = (
+    toolCallId: string,
+    data: { name: string; phone: string; address: string }
+  ) => {
+    if (submittedCheckouts.current.has(toolCallId)) return;
+    submittedCheckouts.current.add(toolCallId);
 
     addToolOutput({
-      tool: toolName,
+      tool: "proceedToCheckout",
       toolCallId: toolCallId,
-      output: { success: true },
+      output: {
+        success: true,
+        orderDetails: data,
+        message: `Order placed successfully for ${data.name}`,
+      },
     });
   };
 
@@ -426,35 +430,69 @@ export default function ChatContent({
                     part.type === "tool-proceedToCheckout" &&
                     part.state === "input-available"
                   ) {
-                    handleProceedToCheckout(
-                      "proceedToCheckout",
-                      part.toolCallId,
+                    const isAlreadySubmitted = submittedCheckouts.current.has(part.toolCallId);
+                    
+                    if (isAlreadySubmitted) {
+                      return (
+                        <div
+                          key={`${message.id}-${i}`}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm"
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          Processing your order...
+                        </div>
+                      );
+                    }
+                    
+                    return (
+                      <div key={`${message.id}-${i}`} className="my-4">
+                        <p className="text-gray-700 font-medium mb-3">
+                          Please fill in these details to complete your checkout
+                        </p>
+                        <InlineCheckoutForm
+                          onSubmit={(data) =>
+                            handleCheckoutSubmit(part.toolCallId, data)
+                          }
+                        />
+                      </div>
                     );
+                  }
+
+                  if (
+                    part.type === "tool-proceedToCheckout" &&
+                    part.state === "output-available"
+                  ) {
                     return (
                       <div
                         key={`${message.id}-${i}`}
-                        className="flex items-center gap-2 text-gray-600"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 my-2 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm"
                       >
                         <svg
-                          className="w-4 h-4 animate-spin text-orange-500"
+                          className="w-4 h-4"
                           fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          ></circle>
                           <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          ></path>
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
-                        <span>Getting your order ready for checkout...</span>
+                        Order placed successfully!
                       </div>
                     );
                   }

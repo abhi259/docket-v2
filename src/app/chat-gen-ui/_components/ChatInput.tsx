@@ -7,6 +7,7 @@ interface ChatInputProps {
   setInput: (value: string) => void;
   onSubmit: () => void;
   isStreaming: boolean;
+  disabled?: boolean;
 }
 
 export function ChatInput({
@@ -14,6 +15,7 @@ export function ChatInput({
   setInput,
   onSubmit,
   isStreaming,
+  disabled = false,
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -55,7 +57,7 @@ export function ChatInput({
           </div>
           <button
             type="submit"
-            disabled={isStreaming || !input.trim()}
+            disabled={isStreaming || !input.trim() || disabled}
             className="shrink-0 w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {isStreaming ? (

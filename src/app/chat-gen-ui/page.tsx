@@ -5,12 +5,14 @@ import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
 } from "ai";
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ChatInput } from "./_components/ChatInput";
 import { ChatHeader } from "./_components/ChatHeader";
 import { ChatMessages } from "./_components/ChatMessages";
 import { useChatStore } from "../store/store";
+
+const HUMAN_INPUT_TOOLS = ["askForComparison", "proceedToCheckout"];
 
 function ChatPage() {
   const [input, setInput] = useState("");
@@ -24,6 +26,17 @@ function ChatPage() {
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
     messages: storedMessages.length > 0 ? storedMessages : undefined,
   });
+
+  const hasPendingHumanInputTool = useMemo(() => {
+    const lastMessage = messages[messages.length - 1];
+    if (!lastMessage || lastMessage.role !== "assistant") return false;
+    
+    return lastMessage.parts.some((part: any) => {
+      if (!part.type?.startsWith("tool-")) return false;
+      const toolName = part.type.replace("tool-", "");
+      return HUMAN_INPUT_TOOLS.includes(toolName) && part.state === "input-available";
+    });
+  }, [messages]);
 
   // Sync messages to store whenever they change
   useEffect(() => {
@@ -43,12 +56,13 @@ function ChatPage() {
 
   const handleSubmit = () => {
     const text = input.trim();
-    if (!text || status === "streaming") return;
+    if (!text || status === "streaming" || hasPendingHumanInputTool) return;
     sendMessage({ text });
     setInput("");
   };
 
   const isStreaming = status === "streaming";
+  const isInputDisabled = isStreaming || hasPendingHumanInputTool;
 
   return (
     <div className="flex flex-col w-full  bg-gray-50">
@@ -69,6 +83,7 @@ function ChatPage() {
         setInput={setInput}
         onSubmit={handleSubmit}
         isStreaming={isStreaming}
+        disabled={isInputDisabled}
       />
     </div>
   );
