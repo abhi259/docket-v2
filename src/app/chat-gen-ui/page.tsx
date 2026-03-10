@@ -27,7 +27,7 @@ function ChatPage() {
     messages: storedMessages.length > 0 ? storedMessages : undefined,
   });
 
-  console.log("messages", messages);
+  // console.log("messages", messages);
 
   const hasPendingHumanInputTool = useMemo(() => {
     const lastMessage = messages[messages.length - 1];
