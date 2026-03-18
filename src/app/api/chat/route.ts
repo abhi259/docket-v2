@@ -1,4 +1,4 @@
-import { anthropic } from "@ai-sdk/anthropic";
+  import { anthropic } from "@ai-sdk/anthropic";
 import { streamText, convertToModelMessages } from "ai";
 import { agentTools } from "./tools/agent-tools";
 
@@ -14,6 +14,12 @@ export async function POST(req: Request) {
     system: systemPrompt,
     messages: await convertToModelMessages(messages, { tools: agentTools }),
     tools: agentTools,
+    providerOptions: {
+      anthropic: {
+        cacheControl: { type: "ephemeral" },
+      },
+    },
+    
   });
 
   return result.toUIMessageStreamResponse();

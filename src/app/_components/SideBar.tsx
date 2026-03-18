@@ -199,7 +199,7 @@ export default function SideBar() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-gray-900 tracking-tight">
-              Docket
+            TalkBite
             </h1>
             <p className="text-xs text-gray-500 font-medium">Food Ordering</p>
           </div>

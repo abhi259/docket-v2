@@ -42,7 +42,7 @@ export function ChatHeader() {
           </svg>
         </div>
         <div>
-          <h1 className="text-lg font-semibold text-gray-900">Docket Chat</h1>
+          <h1 className="text-lg font-semibold text-gray-900">TalkBite Chat</h1>
           <p className="text-xs text-gray-500">AI-powered assistant</p>
         </div>
       </div>

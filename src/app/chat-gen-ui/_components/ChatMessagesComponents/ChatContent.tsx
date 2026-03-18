@@ -144,8 +144,6 @@ export default function ChatContent({
     }
   };
 
-  
-
   return (
     <>
       {messages.map((message, messageIndex) => (

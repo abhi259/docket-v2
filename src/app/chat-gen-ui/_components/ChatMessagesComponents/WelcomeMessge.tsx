@@ -19,7 +19,7 @@ export default function WelcomeMessge() {
         </svg>
       </div>
       <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-        Welcome to Docket
+        Welcome to TalkBite
       </h2>
       <p className="text-gray-500 max-w-md">
         Ready to order? Browse our menu, add items to your cart, or just tell me

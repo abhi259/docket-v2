@@ -1,6 +1,6 @@
-# Docket - AI-Powered Food Ordering Application
+# TalkBite - AI-Powered Food Ordering Application
 
-Docket is a modern food ordering application that combines a traditional menu browsing experience with an AI-powered chat interface. Users can browse food items, manage their cart, and interact with an AI assistant to search, compare, and order food.
+TalkBite is a modern food ordering application that combines a traditional menu browsing experience with an AI-powered chat interface. Users can browse food items, manage their cart, and interact with an AI assistant to search, compare, and order food.
 
 ## Tech Stack
 

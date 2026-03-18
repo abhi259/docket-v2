@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Docket",
+  title: "TalkBite",
   description: "Your smart ordering companion",
 };
 
