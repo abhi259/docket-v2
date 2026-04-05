@@ -7,15 +7,36 @@ const getFoodsByIds = (ids: number[]) => {
   return foodData.foods.filter((f: any) => ids.includes(f.id));
 };
 
+/** Keep tool output small for chat history; full records load via renderFoodCards. */
+const SEARCH_RESULTS_LIMIT = 15;
+
+function toSearchHit(food: (typeof foodData.foods)[number]) {
+  return {
+    id: food.id,
+    name: food.name,
+    category: food.category,
+    type: food.type,
+    spiceLevel: food.spiceLevel,
+    price: food.price,
+  };
+}
+
 export const getSearchResults = tool({
   description:
-    "Search for food items in the database by name, category, description, or ingredients",
+    "Search for food items by name, category, description, or ingredients. Returns compact rows (id, name, category, type, spice, price) only—at most 15 matches. Use renderFoodCards with chosen ids for full details and UI. If totalMatched exceeds the limit, narrow the query.",
   inputSchema: z.object({
     query: z.string().describe("The search query to find matching food items"),
   }),
   execute: async ({ query }) => {
-    const results = filterFoodsByQuery(foodData.foods, query);
-    return { query, results };
+    const matched = filterFoodsByQuery(foodData.foods, query);
+    const truncated = matched.length > SEARCH_RESULTS_LIMIT;
+    const results = matched.slice(0, SEARCH_RESULTS_LIMIT).map(toSearchHit);
+    return {
+      query,
+      results,
+      totalMatched: matched.length,
+      truncated,
+    };
   },
 });
 
@@ -107,7 +128,3 @@ export const agentTools = {
   clearCart,
   proceedToCheckout,
 };
-
-
-
-

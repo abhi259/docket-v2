@@ -144,6 +144,8 @@ export default function ChatContent({
     }
   };
 
+  console.log("messages", messages);
+
   return (
     <>
       {messages.map((message, messageIndex) => (
